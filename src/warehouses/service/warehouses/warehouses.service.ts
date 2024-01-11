@@ -93,6 +93,10 @@ export class WarehousesService {
         return this.warehouseRepository.delete({id})
     }
 
+    deleteProduct(id: number){
+        return this.productRepository.delete({id})
+    }
+
     async createInvoice(invoiceDetails: createInvoiceParams){
         let bill = [];
         let bills = [];
@@ -274,10 +278,11 @@ export class WarehousesService {
     async searchAllProducts() {       
 
         const products  = await this.productRepository.manager.query(
-            `SELECT SUM(inventories.cantidad) AS Total, nombre, products.id
+            `SELECT SUM(inventories.cantidad) AS total, nombre, products.id, products.lot_number As numero_de_lote,
+            products.price AS precio
             FROM products 
             INNER JOIN inventories
-            ON products.id = inventories.id_product
+            ON products.id = inventories.id_product 
             GROUP BY products.id`
         );
         return products;

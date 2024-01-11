@@ -14,7 +14,9 @@ export type createProductParams = {
     nombre: string;
     descripcion: string;
     id_warehouse: number;
-    cantidad: number;    
+    cantidad: number;
+    lot_number: number; 
+    price: number;  
 }
 
 export type createInventorytParams = {

@@ -48,6 +48,12 @@ export class WarehousesController {
         return this.warehouseService.createProduct(productDto);
     }
 
+    @Delete('products/:id')
+    async deleteProductById(
+        @Param('id') id: number){
+            await this.warehouseService.deleteProduct(id);
+        }
+
     @Put('relocate/product')
     relocateProduct(@Body() relocateProductDto: relocateProductDto){
         return this.warehouseService.relocateProduct(relocateProductDto);
