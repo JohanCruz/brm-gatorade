@@ -1,5 +1,5 @@
 
-# Gestion de inventarios RIWI
+# Gestion de inventarios 
 
 La aplicacion funciona corectamente hace uso de typeOrm conectando a mysql debe tener la base de datos inventory creada y habilitada para persistir la data de la aplicación propuesta
 
@@ -14,8 +14,10 @@ npm i
 luego levantar la alicación con el comando
 npm run start:dev
 
-para interactuar, poblar, crear o borrar los datos de prueba de la aplicación se puede hacer uso del archivo de 
-[documentación ](https://drive.google.com/file/d/1c-qE59XwDsXviS6NodWtff_yWHO67p_O/view?usp=sharing)
+para interactuar, poblar, crear o borrar los datos de prueba de la aplicación se puede hacer uso del video demostrativo
+[documentación ](https://drive.google.com/file/d/1R01TUnBr8PYHKZd6iU6Ew5EM9rnWIEOl/view?usp=sharing)
+
+[postman](https://documenter.getpostman.com/view/12905489/2s9Y5SWm3v#fe7508d8-bc9d-45f1-bb95-4ed0a8b21808)
 
 una breve descripcion de la documentación
 
@@ -167,4 +169,7 @@ archivos relevantes de la aplicación
 
 src\warehouses\service\warehouses\warehouses.service.ts
 src\warehouses\controllers\warehouses\warehouses.controller.ts
+
+en el video se encuentra ejemplo de como crear ventas y visualizar facturas
+agregar o eliminar productos 
 

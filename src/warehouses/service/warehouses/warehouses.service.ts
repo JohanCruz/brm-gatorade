@@ -149,7 +149,9 @@ export class WarehousesService {
                             WHERE id_product = ${p.id_product} AND  id_warehouse = ${p.id_warehouse} ;            
                             `)                            
                     
-                        
+                        if(p.cantidad === undefined){
+                            p.cantidad = 0;
+                        }
                         inventory[0].cantidad = p.cantidad                            
                         await iRepo.save(inventory[0]);                            
                         
@@ -164,6 +166,7 @@ export class WarehousesService {
                         total += newBillProduct["price"];
                         newBillProduct["total"] = total;
                         bills.push(newBillProduct)
+                        
                         
                     }
 
@@ -232,7 +235,8 @@ export class WarehousesService {
             
                 let invoice = {}
                 invoice["bills"] = [ ...billsList];
-                invoice["invoice_id"] = id_invoice;                
+                invoice["invoice_id"] = id_invoice;  
+                invoice["created_at"] = invoice['bills'][0].created_at             
                 invoice["total"] = total
                 billsList = [];
                 total = 0
@@ -249,7 +253,8 @@ export class WarehousesService {
                     "precio": bill.price,
                     "producto": bill.id_product,
                     "cantidad":bill.cantidad,
-                     "total":bill.cantidad*bill.price
+                    "total":bill.cantidad*bill.price,
+                    "created_at":bill.created_at
                 });
                 total += bill.cantidad*bill.price;
             }
@@ -259,13 +264,13 @@ export class WarehousesService {
                 let conditional = condition(total);        
                 let invoice;
                 [invoice, total] = conditional;
-                invoices.push(invoice);
+                invoices.push(invoice );
                 
             } 
             addBill(billsList);
             id_invoice = bill.id_invoice;
         }
-        let conditional = condition(total);
+        let conditional = condition(total );
         
         let invoice;
         [invoice, total] = conditional;
